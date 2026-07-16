@@ -1,0 +1,1 @@
+printPairs(arr);
