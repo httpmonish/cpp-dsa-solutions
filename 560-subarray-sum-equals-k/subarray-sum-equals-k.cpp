@@ -1,19 +1,22 @@
 class Solution {
 public:
     int subarraySum(vector<int>& nums, int k) {
-        int n = nums.size();
+        unordered_map<int, int> mpp;
+        mpp[0] = 1; // Prefix sum 0 occurs once initially
+
+        int preSum = 0;
         int count = 0;
 
-        for (int i = 0; i < n; i++) {
-            int sum = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            preSum += nums[i];
 
-            for (int j = i; j < n; j++) {
-                sum += nums[j];
+            int remove = preSum - k;
 
-                if (sum == k) {
-                    count++;
-                }
-            }
+            // Add the number of times (preSum - k) has occurred
+            count += mpp[remove];
+
+            // Store the current prefix sum
+            mpp[preSum]++;
         }
 
         return count;
