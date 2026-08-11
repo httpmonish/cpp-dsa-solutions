@@ -1,16 +1,13 @@
 class Solution {
 public:
-    int sortingMethod(vector<int>& nums) {
-        sort(nums.begin(), nums.end());
-        for(int i=0; i<nums.size(); i++){
-            if(i==nums[i]) continue;
-          else return i;
-        }
-        return nums.size();
-        
-    }                                                                                                                                                                                                                                                                                           
-     int missingNumber(vector<int>& nums) {
-     return sortingMethod(nums);
-     }
+    int missingNumber(vector<int>& nums) {
+        int ans = nums.size();
 
+    for(int i = 0; i < nums.size(); i++) {
+        ans ^= i ^ nums[i];
+    }
+
+    return ans;
+        
+    }
 };
